@@ -1,0 +1,18 @@
+.scaling-buttons {
+	display: flex;
+	margin: var(--spacing-s);
+}
+
+.scaling-buttons > button {
+	margin-right: var(--spacing-s);
+}
+
+.image-metadata {
+	width: 100%;
+	padding: var(--spacing-s);
+	background-color: var(--bg-darker);
+}
+
+.copy {
+	float: right;
+}
