@@ -1,9 +1,9 @@
 .scaling-buttons {
 	display: flex;
-	margin: var(--spacing-s);
+	margin: var(--spacing-s) 0;
 }
 
-.scaling-buttons > button {
+.scaling-buttons > * {
 	margin-right: var(--spacing-s);
 }
 
@@ -13,6 +13,13 @@
 	background-color: var(--bg-darker);
 }
 
-.copy {
-	float: right;
+.save-buttons {
+	display: flex;
+	width: 100%;
+	justify-content: stretch;
+	margin: var(--spacing-s) 0;
+}
+
+.save-buttons > * {
+	margin-right: var(--spacing-s);
 }

@@ -1,11 +1,31 @@
 let originalImage = null;
 let scaledImage = null;
+
 let imageType = null; // image/jpeg | image/png
+
 let originalWidth = null;
 let originalHeight = null;
+let scaledWidth = null;
+let scaledHeight = null;
+
+const pngPrefix = "data:image/png;base64,";
+const jpgPrefix = "data:image/jpeg;base64,";
+
+// page elements
+let buttons = document.getElementsByTagName('button');
+
+let filename = document.getElementById("fileName");
+let widthEle = document.getElementById("width");
+let heightEle = document.getElementById("height");
+
+let imgEle = document.getElementById("selected-image");
+
+
+function init() {
+	refreshButtons()
+}
 
 function refreshButtons() {
-	var buttons = document.getElementsByTagName('button');
 	for (let i = 0; i < buttons.length; i++) {
 	    let button = buttons[i];
 	    button.disabled = !originalImage?.length
@@ -13,26 +33,23 @@ function refreshButtons() {
 }
 
 function handleImagePickerChange (files) {
-	const filename = document.getElementById("fileName");
 	filename.innerText = files[0].name;
-	const size = document.getElementById("size");
-	size.innerText = files[0].size;
 	imageType = files[0].type;
 
 
 	const reader = new FileReader();
 	reader.onload = (e) => {
 		originalImage = e.target.result;
-		const imgEle = document.getElementById("selected-image");
+		
 		imgEle.src = originalImage;
+		imgEle.onload = () => {
+			widthEle.innerText = imgEle.naturalWidth
+			originalWidth = imgEle.naturalWidth
 
-		const widthEle = document.getElementById("width");
-		widthEle.innerText = imgEle.naturalWidth
-		originalWidth = imgEle.naturalWidth
+			heightEle.innerText = imgEle.naturalHeight
+			originalHeight = imgEle.naturalHeight			
+		}
 
-		const heightEle = document.getElementById("height");
-		heightEle.innerText = imgEle.naturalHeight
-		originalHeight = imgEle.naturalHeight
 
 		refreshButtons()
 	}
@@ -41,24 +58,46 @@ function handleImagePickerChange (files) {
 }
 
 async function copyImage() {
-	// TODO trim the prefix off of the base64 before copying
-	 const clipboardItemData = {
-		["text/plain"]: scaledImage ?? originalImage,
-	};
-	const clipboardItem = new ClipboardItem(clipboardItemData);
+	const data =
+		(scaledImage ?? originalImage)
+			.replace(pngPrefix, "")
+			.replace(jpgPrefix, "")
+
+	const clipboardItem = new ClipboardItem({
+		["text/plain"]: data,
+	});
 	await navigator.clipboard.write([clipboardItem]);
 }
 
-function scaleImage(image, width, height) {
-    const canvasTmp = Canvas.createIfSupported();
-    const context = canvasTmp.getContext2d();
+function scaleImage(scale) {
+	imgEle.onload = () => {
+		widthEle.innerText = imgEle.naturalWidth
+		scaledWidth = imgEle.naturalWidth
 
-    canvasTmp.setCoordinateSpaceWidth(width);
-    canvasTmp.setCoordinateSpaceHeight(height);
+		heightEle.innerText = imgEle.naturalHeight
+		scaledHeight = imgEle.naturalHeight			
+	}
+	if (scale == 1) {
+		scaledImage = null;
+		imgEle.src = originalImage;
+	}
+	else {
+	    const canvasTmp = document.createElement("canvas");
+	    const context = canvasTmp.getContext("2d");
 
-    const imageElement = ImageElement.as(image.getElement());
+	    canvasTmp.width = originalWidth * scale;
+	    canvasTmp.height = originalHeight * scale;
 
-    context.drawImage(imageElement, 0, 0, width, height);
+    	const tempImg = new Image(originalWidth, originalHeight);
+    	tempImg.onload = () => {
+		    context.drawImage(
+		    	tempImg, 0, 0,
+		    	originalWidth * scale,
+		    	originalHeight * scale);
 
-    return canvasTmp.toDataUrl(imageType);
+		    scaledImage = canvasTmp.toDataURL(imageType);
+		    imgEle.src = scaledImage;    		
+    	}
+    	tempImg.src = originalImage;
+	}
 }

@@ -5,7 +5,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="assets/site.css">
 	<link rel="stylesheet" type="text/css" href="assets/image-encoding.css">
-	<script src="assets/image-encoding.js"></script>
 	<title>Base64 Image Encoder</title>
 </head>
 <body>
@@ -17,20 +16,30 @@
 		accept="image/png, image/jpeg"
 		onchange="handleImagePickerChange(this.files)" />
 	<div class="scaling-buttons">
-		<button disabled>100%</button>
-		<button disabled>75%</button>
-		<button disabled>50%</button>
-		<button disabled>25%</button>
+		<label>Scale Image: </label>
+		<button onclick="scaleImage(1)" disabled>100%</button>
+		<button onclick="scaleImage(.75)" disabled>75%</button>
+		<button onclick="scaleImage(.5)" disabled>50%</button>
+		<button onclick="scaleImage(.25)" disabled>25%</button>
 	</div>
 	<div class="image-metadata">
-		<button disabled class="copy" onclick="copyImage()">
-			Copy Base 64
-		</button>
 		<p>Image: <span id="fileName"></span></p>
-		<p>Original Size: <span id="size"></span></p>
 		<p>Width: <span id="width"></span></p>
 		<p>Height: <span id="height"></span></p>
 	</div>
+	<div class="save-buttons" >
+		<button disabled onclick="copyImage()">
+			Copy Base 64
+		</button>
+		<!-- <button disabled onclick="copyImage()">
+			Save as .png
+		</button>
+		<button disabled onclick="copyImage()">
+			Save as .jpg
+		</button> -->
+	</div>
 	<image id="selected-image" />
 </body>
+<script src="assets/image-encoding.js"></script>
+<script>init()</script>
 </html>
