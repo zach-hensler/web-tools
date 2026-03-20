@@ -47,7 +47,8 @@ footer {
 }
 
 .footer-links {
-	padding-left: var(--spacing-l);
+	width: 80%;
+	margin: auto;
 }
 
 .footer-links > a {
