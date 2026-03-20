@@ -1,9 +1,14 @@
 :root {
-	--background-color: hsl(274, 19%, 26%);
 	--font-color: hsl(262, 26%, 66%);
-	--bg-darker: hsl(274, 10%, 20%);
+	--font-darker: hsl(from var(--font-color) h s calc(l - 20));
+
+	--bg-color: hsl(274, 19%, 26%);
+	--bg-darker: hsl(from var(--bg-color) h s calc(l - 6));
+	--bg-darkest: hsl(from var(--bg-darker) h s calc(l - 6));
 
 	--spacing-s: 10px;
+	--spacing-m: 20px;
+	--spacing-l: 40px;
 }
 
 html,body {
@@ -13,11 +18,43 @@ html,body {
 
 body {
 	color: var(--font-color);
-	background-color: var(--background-color);
+	background-color: var(--bg-color);
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+}
+main {
 	width: 80%;
-	margin: auto;
+	margin: 0 auto;	
 }
 
 img {
 	max-width: 100%;
+}
+
+a {
+	color: var(--font-color);
+	text-decoration: underline;
+}
+
+footer {
+	width: 100%;
+	background-color: var(--bg-darker);
+	margin-top: auto;
+	display: flex;
+	padding: var(--spacing-m) 0 var(--spacing-l) 0;
+}
+
+.footer-links {
+	padding-left: var(--spacing-l);
+}
+
+.footer-links > a {
+	padding-right: var(--spacing-m);
+}
+
+.footer-links > a:hover {
+	color: var(--font-darker);
+
 }

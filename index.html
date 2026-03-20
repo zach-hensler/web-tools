@@ -9,37 +9,45 @@
 	<title>Base64 Image Encoder</title>
 </head>
 <body>
-	<h1>Base 64 Encoder</h1>
-	<label for="image-picker">Select an image: </label>
-	<input
-		type="file"
-		id="image-picker"
-		accept="image/png, image/jpeg"
-		onchange="handleImagePickerChange(this.files)" />
-	<div class="scaling-buttons">
-		<label>Scale Image: </label>
-		<button onclick="scaleImage(1)" disabled>100%</button>
-		<button onclick="scaleImage(.75)" disabled>75%</button>
-		<button onclick="scaleImage(.5)" disabled>50%</button>
-		<button onclick="scaleImage(.25)" disabled>25%</button>
-	</div>
-	<div class="image-metadata">
-		<p>Image: <span id="fileName"></span></p>
-		<p>Width: <span id="width"></span></p>
-		<p>Height: <span id="height"></span></p>
-	</div>
-	<div class="save-buttons" >
-		<button disabled onclick="copyImage()">
-			Copy Base 64
-		</button>
-		<!-- <button disabled onclick="copyImage()">
-			Save as .png
-		</button>
-		<button disabled onclick="copyImage()">
-			Save as .jpg
-		</button> -->
-	</div>
-	<image id="selected-image" />
+	<main>
+		<h1>Base 64 Encoder</h1>
+		<label for="image-picker">Select an image: </label>
+		<input
+			type="file"
+			id="image-picker"
+			accept="image/png, image/jpeg"
+			onchange="handleImagePickerChange(this.files)" />
+		<div class="scaling-buttons">
+			<label>Scale Image: </label>
+			<button onclick="scaleImage(1)" disabled>100%</button>
+			<button onclick="scaleImage(.75)" disabled>75%</button>
+			<button onclick="scaleImage(.5)" disabled>50%</button>
+			<button onclick="scaleImage(.25)" disabled>25%</button>
+		</div>
+		<div class="image-metadata">
+			<p>Image: <span id="fileName"></span></p>
+			<p>Width: <span id="width"></span></p>
+			<p>Height: <span id="height"></span></p>
+		</div>
+		<div class="save-buttons" >
+			<button disabled onclick="copyImage()">
+				Copy Base 64
+			</button>
+			<!-- <button disabled onclick="copyImage()">
+				Save as .png
+			</button>
+			<button disabled onclick="copyImage()">
+				Save as .jpg
+			</button> -->
+		</div>
+		<image id="selected-image" />
+	</main>
+	<footer>
+		<div class="footer-links">
+			<a href="https://github.com/zach-hensler/web-tools">Source Code</a>
+			<a href="https://zach-hensler.com/">Site Map</a>
+		</div>
+	</footer>
 </body>
 <script src="assets/image-encoding.js"></script>
 <script>init()</script>
