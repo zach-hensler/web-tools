@@ -1,0 +1,11 @@
+.json-buttons {
+    float: right;
+    display: flex;
+    flex-direction: row;
+}
+
+#validation-results {
+    width: 100%;
+    background-color: var(--bg-darker);
+    padding: var(--spacing-s);
+}

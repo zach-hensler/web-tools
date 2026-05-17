@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="assets/site.css">
+    <link rel="stylesheet" type="text/css" href="assets/json-validator.css">
+    <link rel="icon" type="image/x-icon" href="assets/icon.png">
+    <title>Base64 Image Encoder</title>
+</head>
+<body>
+<!--    <header>-->
+<!--        <a href="index.html" class="logo-link">-->
+<!--            <img height="32px" src="assets/icon.png" alt="Penguin Logo">-->
+<!--            <span>&nbsp;Web Tools</span>-->
+<!--        </a>-->
+<!--        <a href="index.html">Base 64 Encoder</a>-->
+<!--        <a href="json-validator.html">Json Validator</a>-->
+<!--    </header>-->
+    <main>
+        <h1>Json Validator</h1>
+        <div class="json-buttons"><button onclick="validateJson()">Validate</button></div>
+        <label for="json">Insert Json Below</label>
+        <textarea id="json" rows="10" onchange="setJsonResult(ResultTypes.Unverified)"></textarea>
+        <h2>Validation Results</h2>
+        <div id="validation-results"></div>
+    </main>
+    <footer>
+        <div class="footer-links">
+            <a href="https://github.com/zach-hensler/web-tools">Source Code</a>
+            <a href="https://zach-hensler.com/">Site Map</a>
+        </div>
+    </footer>
+</body>
+<script src="assets/json-validator.js"></script>
+</html>

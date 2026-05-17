@@ -6,6 +6,7 @@
 	--bg-darker: hsl(from var(--bg-color) h s calc(l - 6));
 	--bg-darkest: hsl(from var(--bg-darker) h s calc(l - 6));
 
+	--spacing-xs: 5px;
 	--spacing-s: 10px;
 	--spacing-m: 20px;
 	--spacing-l: 40px;
@@ -14,6 +15,27 @@
 html,body {
 	margin: 0;
 	padding: 0;
+}
+
+header {
+	width: 100%;
+	background-color: var(--bg-darker);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+header > a {
+	text-decoration: none;
+	color: var(--font-color);
+	padding: var(--spacing-s) var(--spacing-m);
+}
+header > a:hover {
+	background-color: var(--bg-darkest);
+	color: var(--font-darker);
+}
+.logo-link {
+	display: flex;
+	align-items: center;
 }
 
 body {
@@ -36,6 +58,13 @@ img {
 a {
 	color: var(--font-color);
 	text-decoration: underline;
+}
+
+textarea {
+	padding: var(--spacing-xs) var(--spacing-s);
+	margin: var(--spacing-s) 0;
+	resize: vertical;
+	width: 100%;
 }
 
 footer {

@@ -77,7 +77,7 @@ function scaleImage(scale) {
 		heightEle.innerText = imgEle.naturalHeight
 		scaledHeight = imgEle.naturalHeight			
 	}
-	if (scale == 1) {
+	if (scale === 1) {
 		scaledImage = null;
 		imgEle.src = originalImage;
 	}
